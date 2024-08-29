@@ -4,6 +4,7 @@ class BooksController < ApplicationController
   end
 
   def show
+
   end
 
   def edit

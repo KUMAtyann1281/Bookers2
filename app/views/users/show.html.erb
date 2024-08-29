@@ -1,56 +1,11 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <div class='col-md-3'>
-      <h2>User info</h2>
-      <!-- モックのため、固定値や未実装になっている部分があります。アプリ完成前に修正しましょう。 -->
-      <table class='table'>
-        <tr>
-          <% if @user.get_profile_image(100,100).present? %>
-            <%= image_tag @user.get_profile_image(100,100) %>
-          <% else %>
-            <%= image_tag "image.jpg" %>
-          <% end %>
-        </tr>
-        <tr>
-          <th>name</th>
-          <th><%= @user.name %></th>
-        </tr>
-        <tr>
-          <th>introduction</th>
-          <th><%= @user.introduction %></th>
-        </tr>
-      </table>
-      <div class='row'>
-        <% if @user == current_user %>
-          <p><%= link_to "Edit", edit_user_path(@user) %></p>
-        <% end %>
-      </div>
-      <h2 class="mt-3">New book</h2>
-      <%= form_with model: @book, url: '/books', method: :post do |f| %>
-        <div class="book-errors">
-          <% if @book.errors.any? %>
-            <div class="book-errors-text">
-              <strong><%= @book.errors.count %>errors prohibited this book from being saved:</strong>
-              <ul class="book-errors-text2">
-                <% @book.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-        </div>
-        <h5>Title</h5>
-        <%= f.text_field :title %>
-        <h5>Opinion</h5>
-        <%= f.text_area :body %>
-        <div class="book-post">
-        <%= f.submit 'Create Book' %>
-        </div>
-      <% end %>
+      <%= render partial: 'shared/userinfo', locals: { user: @user } %>
+      <%= render partial: 'shared/newbook', locals: { book: user.book } %>
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
-      <!-- 投稿した書籍一覧表示を作成しましょう。 -->
       <table class='table table-hover table-inverse'>
         <thead>
           <tr>
