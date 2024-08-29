@@ -7,8 +7,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @profile_image = @user.get_profile_image
-    @books = current_user.books
+    @user_book = Book.new
+    @user_books = Book.where(user_id: @user.id)
   end
 
   def edit
