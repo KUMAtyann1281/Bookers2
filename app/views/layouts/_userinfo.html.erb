@@ -19,7 +19,9 @@
 </table>
 
 <div class='row'>
-  <% if user == current_user %>
-    <p><%= link_to "Edit", edit_user_path(user) %></p>
-  <% end %>
+  <div class="edit-icon">
+    <% if user == current_user %>
+      <p><%= link_to "<i class='fas fa-user-gear'></i>".html_safe, edit_user_path(user) %></p>
+    <% end %>
+  </div>
 </div>
