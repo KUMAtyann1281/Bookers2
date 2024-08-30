@@ -9,17 +9,17 @@
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li>
-              <%= link_to users_path(current_user), class:"nav-link text-light" do%>
+              <%= link_to user_path(current_user), class:"nav-link text-light" do%>
                 <i class="fa-solid fa-house"></i> Home
               <% end %>
             </li>
             <li>
-              <%= link_to "Users", class:"nav-link text-light" do%>
+              <%= link_to users_path, class:"nav-link text-light" do%>
                 <i class="fa-solid fa-users"></i> Users
               <% end %>
             </li>
             <li>
-              <%= link_to "Books", class:"nav-link text-light" do%>
+              <%= link_to books_path, class:"nav-link text-light" do%>
                 <i class="fa-solid fa-book-open"></i> Books
               <% end %>
             </li>

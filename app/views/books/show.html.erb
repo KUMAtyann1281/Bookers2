@@ -1,7 +1,7 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <div class='col-md-3'>
-      <%= render partial: 'layouts/userinfo', locals: { user: @user } %>
+      <%= render partial: 'layouts/userinfo', locals: { user: @user_info } %>
       <%= render partial: 'layouts/newbook', locals: { book: @book } %>
     </div>
     <div class='col-md-8 offset-md-1'>
@@ -17,26 +17,24 @@
           </tr>
         </thead>
         <tbody>
-          <% @books.each do |book| %>
-            <tr>
-              <td>
-                <%= image_tag book.user.avatar %><br/>
-                <%= link_to user.name,user_path(user) %>
-              </td>
-              <td><%= link_to book.title, book_path(book) %></td>
-              <td colspan="2"><%= book.body %></td>
-              <td class="action-links">
-                <% if current_user == book.user %>
-                  <%= link_to "Edit", edit_book_path(book.id) %>
-                <% end %>
-              </td>
-              <td class="action-links">
-                <% if current_user == book.user %>
-                  <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "本当に消しますか?" %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
+          <% @user_book.users.each do |book| %>
+          <tr>
+            <td>
+              <%= image_tag user_book.user.get_profile_image %><br/>
+              <%= link_to user.name,user_path(user_book.user) %></td>
+            <td><%= link_to book.title, book_path(book) %></td>
+            <td colspan="2"><%= book.body %></td>
+            <td class="action-links">
+              <% if current_user == book.user %>
+                <%= link_to "Edit", edit_book_path(book) %>
+              <% end %>
+            </td>
+            <td class="action-links">
+              <% if current_user == book.user %>
+                <%= link_to "Destroy", book_path(book), method: :delete, "data-confirm" => "本当に消しますか?" %>
+              <% end %>
+            </td>
+           </tr>
         </tbody>
       </table>
     </div>
