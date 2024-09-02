@@ -1,40 +1,32 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <div class='col-md-3'>
-      <%= render partial: 'layouts/userinfo', locals: { user: @user_info } %>
+      <%= render partial: 'layouts/userinfo', locals: { user: @user } %>
       <%= render partial: 'layouts/newbook', locals: { book: @book } %>
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Book detail</h2>
-      <table class='table table-hover table-inverse'>
-        <thead>
-          <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
+      <table class='table'>
         <tbody>
-          <% @user_book.users.each do |book| %>
           <tr>
             <td>
-              <%= image_tag user_book.user.get_profile_image %><br/>
-              <%= link_to user.name,user_path(user_book.user) %></td>
-            <td><%= link_to book.title, book_path(book) %></td>
-            <td colspan="2"><%= book.body %></td>
-            <td class="action-links">
-              <% if current_user == book.user %>
-                <%= link_to "Edit", edit_book_path(book) %>
+              <%= link_to user_path(@user.id) do %>
+                <%= image_tag @user.get_profile_image %><br/>
+                <%= @user.name %>
               <% end %>
             </td>
+            <td><%= link_to @user_book.title, book_path(@user_book.id) %></td>
+            <td colspan="2"><%= @user_book.body %></td>
             <td class="action-links">
-              <% if current_user == book.user %>
-                <%= link_to "Destroy", book_path(book), method: :delete, "data-confirm" => "本当に消しますか?" %>
+              <% if @user == current_user %>
+                <%= link_to "Edit", edit_book_path(@user_book) %>
+              <% end %>
+            <td class="action-links">
+              <% if @user == current_user %>
+                <%= link_to "Destroy", book_path(@user_book.id), method: :delete, "data-confirm" => "本当に消しますか?" %>
               <% end %>
             </td>
-           </tr>
+          </tr>
         </tbody>
       </table>
     </div>

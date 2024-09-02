@@ -20,8 +20,6 @@
 
 <div class='row'>
   <div class="edit-icon">
-    <% if user == current_user %>
-      <p><%= link_to "<i class='fas fa-user-gear'></i>".html_safe, edit_user_path(user) %></p>
-    <% end %>
+    <p><%= link_to "<i class='fa-solid fa-user-gear'></i>".html_safe, edit_user_path(user.id) %></p>
   </div>
 </div>

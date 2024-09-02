@@ -1,9 +1,21 @@
 <h2>Editing Book</h2>
 <%= form_with model: @book do |f| %>
+  <div class="book-errors">
+    <% if @book.errors.any? %>
+      <div class="book-errors-text">
+        <strong><%= @book.errors.count %>errors prohibited this book from being saved:</strong>
+        <ul class="book-errors-text2">
+          <% @book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
   <label for="inputTitle">Title</label><br/>
-  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%><br/>
+  <%= f.text_field :title, autofocus: true, id:"inputTitle", placeholder:""%><br/>
   <label for="inputBody">Opinion</label><br/>
-  <%= f.text_field :body, autofocus: true, id:"inputBody", placeholder:"感想"%><br/>
+  <%= f.text_field :body, autofocus: true, id:"inputBody", placeholder:""%><br/>
   <%= f.submit "Update Book" %>
 <% end %>
 
