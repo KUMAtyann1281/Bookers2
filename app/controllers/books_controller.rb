@@ -25,8 +25,9 @@ class BooksController < ApplicationController
       redirect_to book_path(@book.id)
     else
       flash.discard(:notice)
-      @book = Book.all
-      redirect_to books_path
+      @books = Book.all
+      @user_info_index = current_user
+      render :index
     end
   end
 
@@ -44,7 +45,7 @@ class BooksController < ApplicationController
   def destroy
     @book = Book.find(params[:id])
     if @book. destroy
-      flash[:notice] = "Book was successfully created."
+      flash[:notice] = "Book was successfully deleted."
       redirect_to books_url
     else
       flash.discard(:notice)

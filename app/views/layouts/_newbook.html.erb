@@ -1,22 +1,10 @@
 <h2 class="mt-3">New book</h2>
-  <%= form_with model: book, url: '/books', method: :post do |f| %>
-      <div class="book-errors">
-        <% if @book.errors.any? %>
-          <div class="book-errors-text">
-            <strong><%= @book.errors.count %>errors prohibited this book from being saved:</strong>
-            <ul class="book-errors-text2">
-              <% @book.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-      </div>
-    <h5>Title</h5>
-    <%= f.text_field :title %>
-    <h5>Opinion</h5>
-    <%= f.text_area :body %>
-    <div class="book-post">
-      <%= f.submit 'Create Book' %>
-    </div>
-  <% end %>
+<%= form_with model: book, url: '/books', method: :post do |f| %>
+  <h6>Title</h6>
+  <%= f.text_field :title %>
+  <h6>Opinion</h6>
+  <%= f.text_area :body %>
+  <div class="book-post">
+    <%= f.submit 'Create Book', class: "btn btn-success" %>
+  </div>
+<% end %>

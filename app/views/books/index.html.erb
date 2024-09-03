@@ -1,5 +1,19 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
+    <div class='col-md-12'>
+      <div class="book-errors">
+        <% if @book.errors.any? %>
+          <div class="book-errors-text">
+            <strong><%= @book.errors.count %>errors prohibited this book from being saved:</strong>
+            <ul class="book-errors-text2">
+              <% @book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    </div>
     <div class='col-md-3'>
       <%= render partial: 'layouts/userinfo', locals: { user: @user_info_index } %>
       <%= render partial: 'layouts/newbook', locals: { book: @book } %>

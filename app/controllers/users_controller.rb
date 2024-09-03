@@ -25,8 +25,9 @@ class UsersController < ApplicationController
       redirect_to book_path(@book.id)
     else
       flash.discard(:notice)
-      @book = Book.all
-      redirect_to books_path
+      @books = Book.all
+      @user_info_index = current_user
+      render :index
     end
   end
 

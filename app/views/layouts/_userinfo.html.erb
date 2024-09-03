@@ -19,7 +19,11 @@
 </table>
 
 <div class='row'>
-  <div class="edit-icon">
-    <p><%= link_to "<i class='fa-solid fa-user-gear'></i>".html_safe, edit_user_path(user.id) %></p>
+  <div class="col-md-12">
+    <p>
+      <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block" do %>
+        <%= raw "<i class='fa-solid fa-user-gear'></i>".html_safe %>
+      <% end %>
+    </p>
   </div>
 </div>
